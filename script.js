@@ -1,11 +1,9 @@
 document.getElementById('newImageButton').addEventListener('click', function() {
     const imgElement = document.getElementById('morrisImage');
-    const originalSrc = imgElement.src;
+    const apiUrl = 'https://morrisapi.starnumber12046.workers.dev/morris';
     imgElement.src = ''; // Clear the current image
-    setTimeout(() => {
-        imgElement.src = originalSrc; // Reset to original source to trigger refresh
-    }, 100);
-    fetch('https://morrisapi.starnumber12046.workers.dev/morris')
+
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             console.log('Fetched data:', data); // Log the response data
