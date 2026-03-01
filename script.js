@@ -4,15 +4,15 @@ document.getElementById('newImageButton').addEventListener('click', function() {
     imgElement.src = ''; // Clear the current image
 
     fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Fetched data:', data); // Log the response data
-            if (data && data.imageUrl) {
-                imgElement.src = data.imageUrl; // Update image source if URL found
-            } else {
-                console.error('Image URL not found in response:', data);
-                imgElement.alt = 'Error: Image not found'; // Optional: Set alt text for error
-            }
+            imgElement.src = data; // Directly use the response as the image URL
         })
         .catch(error => {
             console.error('Error fetching image:', error);
