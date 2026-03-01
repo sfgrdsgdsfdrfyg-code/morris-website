@@ -3,7 +3,7 @@ document.getElementById('newImageButton').addEventListener('click', function() {
     fetch('https://morrisapi.starnumber12046.workers.dev/morris')
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Log the response to check its structure
+            console.log('Fetched data:', data); // Log the entire response data
             if (data && data.imageUrl) {
                 imgElement.src = data.imageUrl; // Update image source only if the URL is found
             } else {
