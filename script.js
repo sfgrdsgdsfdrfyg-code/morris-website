@@ -4,7 +4,7 @@ document.getElementById('newImageButton').addEventListener('click', function() {
         .then(data => {
             console.log(data); // Log the response to check its structure
             if (data && data.imageUrl) {
-                document.getElementById('morrisImage').src = data.imageUrl;
+                document.getElementById('morrisImage').src = data.imageUrl; // Update image source
             } else {
                 console.error('Image URL not found in response:', data);
             }
