@@ -7,12 +7,32 @@
     <title>Morris Image Gallery</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Morris Image Gallery</h1>
-        <div class="image-frame">
-            <img id="morrisImage" src="https://morrisapi.starnumber12046.workers.dev/morris" alt="Morris Image"/>
-        </div>
-        <button id="newImageButton">Get New Image</button>
+    <div class="retro-container">
+        <header class="retro-header">
+            <h1 class="retro-title">Morris Image Gallery</h1>
+            <div class="retro-badge">RETRO-FUTURISTIC</div>
+        </header>
+        
+        <main class="retro-main">
+            <div class="image-display">
+                <div class="image-frame">
+                    <img id="morrisImage" src="https://morrisapi.starnumber12046.workers.dev/morris" 
+                         alt="Morris Image" class="retro-image">
+                </div>
+                <div class="loading-indicator" id="loadingIndicator"></div>
+            </div>
+            
+            <div class="controls-section">
+                <button id="newImageButton" class="retro-button">
+                    🔄 Get New Morris Image
+                </button>
+                <div class="status-display" id="statusDisplay"></div>
+            </div>
+        </main>
+        
+        <footer class="retro-footer">
+            <p class="retro-subtitle">A journey through time and space</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>
