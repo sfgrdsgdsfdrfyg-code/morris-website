@@ -18,10 +18,12 @@ document.getElementById('newImageButton').addEventListener('click', function() {
         frame.style.filter = 'brightness(0.8)';
     }
     
-    // Use a cache-busting timestamp to ensure the browser doesn't cache the image
+    // Note: If you get a CORS/Network error, it's likely because the worker endpoint
+    // does not allow requests from your current domain or has rate limits.
+    // We append a timestamp to bypass browser caching.
     const apiUrl = 'https://morrisapi.starnumber12046.workers.dev/morris?t=' + Date.now();
 
-    fetch(apiUrl)
+    fetch(apiUrl, { mode: 'cors' })
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.blob();
@@ -57,9 +59,15 @@ document.getElementById('newImageButton').addEventListener('click', function() {
         })
         .catch(error => {
             console.error('Error fetching image:', error);
-            imgElement.alt = `Error: ${error.message}`;
+            // Check for common network error causes
+            let errorMsg = error.message;
+            if (errorMsg === 'Failed to fetch') {
+                errorMsg = 'Network Error (likely CORS or API downtime)';
+            }
+            
+            imgElement.alt = `Error: ${errorMsg}`;
             loadingIndicator.classList.remove('visible');
-            statusDisplay.textContent = '❌ Error loading image. Please try again.';
+            statusDisplay.textContent = `❌ ${errorMsg}`;
             
             if (frame) {
                 frame.style.transform = 'scale(1)';
