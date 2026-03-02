@@ -1,57 +1,149 @@
+/* Retro-futuristic Design System */
 body {
-    font-family: 'Arial, sans-serif';
-    background-color: #e0f7fa !important; /* Force background color */
-    color: #333;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #0a0a0a url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 10rect width="100%" height="100%" fill="#0a0a0a"/linearGradient id="glow" x1="20%" y1="80%" x2="80%" y2="20%stop offset="5%" stop-color="#ff6b35"/stop offset="50%" stop-color="#f7931e"/stop offset="95%" stop-color="#ffd23flinearGradientsvg>') center center no-repeat;
+    color: #fff;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+.retro-header {
     text-align: center;
-    margin: 0;
-    padding: 0;
+    padding: 3rem 1rem;
+    font-weight: 700;
 }
 
-.container {
-    margin: 50px auto;
-    padding: 20px;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+.retro-header::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(to bottom, #ff6b35 0%, #ffd23f 100%);
+    width: 60%;
+    margin: 0 auto 1rem;
+}
+
+.retro-badge {
+    display: inline-block;
+    background: #f7931e;
+    color: #0a0a0a;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    margin: 0.5rem auto 1rem;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+/* Main Content Area */
+.retro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    border: 3px solid #ffd23f;
+    border-image: linear-gradient(to right, #ff6b35, #f7931e) 2;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Section */
+.retro-logo {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.retro-image-frame {
+    border: 8px solid #ffd23f;
+    border-radius: 15px;
+    background: #1a1a1a;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+}
+
+.retro-image {
+    width: 100%;
+    transform: scale(1.1);
+    transition: transform 0.5s ease-in-out;
+    filter: saturate(1.2) contrast(1.2);
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
+    border: 1px dashed #ffd23f;
 }
 
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+/* Button Styling */
+.retro-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    border: 3px solid #ffd23f;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    transition: all 0.4s cubic-bezier(0.68, 0.02, 0.59, 1);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.retro-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: scale(0.5);
+    z-index: -1;
+}
+
+.retro-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd23f 100%);
+    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.5);
     color: #fff;
 }
 
-.image-frame {
-    border: 5px solid #fff;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
+.retro-button:active {
+    transform: translateY(1px) scale(0.95);
+    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+/* Loading Indicator */
+#loadingIndicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 5px solid #ffd23f;
+    border-top: 5px solid #ff6b35;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+    opacity: 0.8;
 }
 
-img:hover {
-    transform: scale(1.05);
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+/* Background Animation */
+.retro-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    content: '';
+    animation: backgroundAnimation 10s linear infinite;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
+@keyframes backgroundAnimation {
+    0% { background-position: 0 0; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 100%; }
 }
